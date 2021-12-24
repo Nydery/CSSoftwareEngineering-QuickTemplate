@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickTemplate.Models", "QuickTemplate.Models\QuickTemplate.Models.csproj", "{814322B7-0B25-484C-BBD5-29E7412D47BE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickTemplate.Logic", "QuickTemplate.Logic\QuickTemplate.Logic.csproj", "{4BA6D589-2D38-4527-BD59-B827DAB0D5F4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickTemplate.ConApp", "QuickTemplate.ConApp\QuickTemplate.ConApp.csproj", "{BA9F6754-9315-4674-AB53-34CB4BB5F30B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickTemplate.Model", "QuickTemplate.Model\QuickTemplate.Model.csproj", "{2FE30468-FFDB-4D84-8285-E8C39E42B407}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateCopier.ConApp", "TemplateCopier.ConApp\TemplateCopier.ConApp.csproj", "{2F916729-1A23-4F64-BD24-E17E13DD9468}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateComparison.ConApp", "TemplateComparison.ConApp\TemplateComparison.ConApp.csproj", "{BD942725-FC06-48E8-9017-36FA6897E678}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{814322B7-0B25-484C-BBD5-29E7412D47BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{814322B7-0B25-484C-BBD5-29E7412D47BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{814322B7-0B25-484C-BBD5-29E7412D47BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{814322B7-0B25-484C-BBD5-29E7412D47BE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4BA6D589-2D38-4527-BD59-B827DAB0D5F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4BA6D589-2D38-4527-BD59-B827DAB0D5F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BA6D589-2D38-4527-BD59-B827DAB0D5F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +27,18 @@ Global
 		{BA9F6754-9315-4674-AB53-34CB4BB5F30B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA9F6754-9315-4674-AB53-34CB4BB5F30B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA9F6754-9315-4674-AB53-34CB4BB5F30B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FE30468-FFDB-4D84-8285-E8C39E42B407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FE30468-FFDB-4D84-8285-E8C39E42B407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FE30468-FFDB-4D84-8285-E8C39E42B407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FE30468-FFDB-4D84-8285-E8C39E42B407}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F916729-1A23-4F64-BD24-E17E13DD9468}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F916729-1A23-4F64-BD24-E17E13DD9468}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F916729-1A23-4F64-BD24-E17E13DD9468}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F916729-1A23-4F64-BD24-E17E13DD9468}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD942725-FC06-48E8-9017-36FA6897E678}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD942725-FC06-48E8-9017-36FA6897E678}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD942725-FC06-48E8-9017-36FA6897E678}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD942725-FC06-48E8-9017-36FA6897E678}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

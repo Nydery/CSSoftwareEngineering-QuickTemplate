@@ -1,14 +1,17 @@
-﻿using System;
+﻿//@BaseCode
+//MdStart
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace QuickTemplate.ConApp
 {
-    public class Program
+    public partial class Program
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine(nameof(QuickTemplate));
         }
     }
 }
+//MdEnd

@@ -1,8 +1,10 @@
-﻿using QuickTemplate.Logic.DataContext;
+﻿//@BaseCode
+//MdStart
+using QuickTemplate.Logic.DataContext;
 
 namespace QuickTemplate.Logic.Controllers
 {
-    public abstract class ControllerObject : IDisposable
+    public abstract partial class ControllerObject : IDisposable
     {
         internal ProjectDbContext Context { get; private set; }
         private bool contextOwner;
@@ -67,3 +69,4 @@ namespace QuickTemplate.Logic.Controllers
         #endregion Dispose pattern
     }
 }
+//MdEnd
