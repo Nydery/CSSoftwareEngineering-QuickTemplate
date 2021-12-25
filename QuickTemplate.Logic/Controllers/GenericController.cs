@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace QuickTemplate.Logic.Controllers
 {
-    public abstract partial class GenericController<E> : ControllerObject where E : Model.IdentityObject, new()
+    public abstract partial class GenericController<E> : ControllerObject where E : Entities.IdentityObject, new()
     {
         public GenericController()
             : base(new DataContext.ProjectDbContext())

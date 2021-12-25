@@ -34,7 +34,7 @@ namespace QuickTemplate.Logic.DataContext
             base.OnConfiguring(optionsBuilder);
         }
 
-        public DbSet<E> GetDbSet<E>() where E : Model.IdentityObject
+        public DbSet<E> GetDbSet<E>() where E : Entities.IdentityObject
         {
             var handled = false;
             var result = default(DbSet<E>);
@@ -43,8 +43,8 @@ namespace QuickTemplate.Logic.DataContext
 
             return result;
         }
-        partial void GetDbSet<E>(ref DbSet<E> dbSet, ref bool handled) where E : Model.IdentityObject;
-        public IQueryable<E> QueryableSet<E>() where E : Model.IdentityObject
+        partial void GetDbSet<E>(ref DbSet<E> dbSet, ref bool handled) where E : Entities.IdentityObject;
+        public IQueryable<E> QueryableSet<E>() where E : Entities.IdentityObject
         {
             return GetDbSet<E>();
         }

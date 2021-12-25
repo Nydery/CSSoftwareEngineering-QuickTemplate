@@ -16,7 +16,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\QuickTemplate.Model\QuickTemplate.Model.csproj" />
+	  <ProjectReference Include="..\CommonBase\CommonBase.csproj" />
 	</ItemGroup>
 
 </Project>

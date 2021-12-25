@@ -2,7 +2,7 @@
 //MdStart
 using System.ComponentModel.DataAnnotations;
 
-namespace QuickTemplate.Model
+namespace QuickTemplate.Logic.Entities
 {
     public abstract partial class VersionObject : IdentityObject
     {

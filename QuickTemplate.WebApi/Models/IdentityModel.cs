@@ -2,9 +2,9 @@
 //MdStart
 using System.ComponentModel.DataAnnotations;
 
-namespace QuickTemplate.Model
+namespace QuickTemplate.WebApi.Models
 {
-    public abstract partial class IdentityObject
+    public abstract partial class IdentityModel
     {
         /// <summary>
         /// ID of the entity (primary key)
