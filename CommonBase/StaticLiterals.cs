@@ -13,6 +13,9 @@
             ".ConApp",
             ".Logic",
             ".WebApi",
+            ".AspMvc",
+            ".Angular",
+            ".WpfApp",
         };
         public static string[] SolutionToolProjects { get; } = new[]
         {

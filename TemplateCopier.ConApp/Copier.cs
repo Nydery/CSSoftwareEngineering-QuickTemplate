@@ -53,6 +53,7 @@ namespace TemplateCopier.ConApp
             ,".razor"
             ,".md"
             ,".template"
+            ,".xaml"
         };
         private static string[] ProjectExtensions { get; } = new string[]
         {
@@ -74,6 +75,7 @@ namespace TemplateCopier.ConApp
             ,".template"
             ,".jpg"
             ,".png"
+            ,".xaml"
         };
         private static string[] SolutionExtenions { get; } = new string[]
         {
