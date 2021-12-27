@@ -17,8 +17,8 @@ namespace QuickTemplate.Logic.Controllers
 
         }
 
-        protected DbSet<E> EntitySet => Context.GetDbSet<E>();
-        public virtual IQueryable<E> QueryableSet => Context.QueryableSet<E>();
+        internal DbSet<E> EntitySet => Context.GetDbSet<E>();
+        internal virtual IQueryable<E> QueryableSet => Context.QueryableSet<E>();
 
         public virtual Task<E> GetByIdAsync(int id)
         {
