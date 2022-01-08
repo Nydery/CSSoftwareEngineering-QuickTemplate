@@ -6,6 +6,14 @@ namespace QuickTemplate.Logic.Controllers
 {
     public abstract partial class ControllerObject : IDisposable
     {
+        static ControllerObject()
+        {
+            BeforeClassInitialize();
+            AfterClassInitialize();
+        }
+        static partial void BeforeClassInitialize();
+        static partial void AfterClassInitialize();
+
         internal ProjectDbContext Context { get; private set; }
         private bool contextOwner;
 

@@ -7,8 +7,10 @@ namespace QuickTemplate.Logic.DataContext
 {
     internal partial class ProjectDbContext : DbContext
     {
+        private static string ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Database=QuickTemplateDb;Integrated Security=True";
         static ProjectDbContext()
         {
+            BeforeClassInitialize();
             try
             {
                 var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
@@ -23,9 +25,10 @@ namespace QuickTemplate.Logic.DataContext
             {
                 System.Diagnostics.Debug.WriteLine($"Error in {System.Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}");
             }
+            AfterClassInitialize();
         }
-
-        private static string ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Database=QuickTemplateDb;Integrated Security=True";
+        static partial void BeforeClassInitialize();
+        static partial void AfterClassInitialize();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
