@@ -12,7 +12,7 @@
 
 			UserPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 			SourcePath = GetCurrentSolutionPath();
-			TargetPath = Path.Combine(UserPath, @"source\repos\HtlLeo\CSSoftwareEngineering\MyHome");
+			TargetPath = Directory.GetParent(SourcePath).FullName;
 			ClassConstructed();
 		}
 		static partial void ClassConstructing();
@@ -26,52 +26,105 @@
 		{
 			Console.WriteLine(nameof(TemplateCopier));
 
-			var sourceSolutionName = "QuickTemplate";
-			var sourceProjects = StaticLiterals.SolutionProjects.Concat(StaticLiterals.ProjectExtensions.Select(e => $"{sourceSolutionName}{e}"));
+			var input = string.Empty;
+			var sourceSolutionName = GetCurrentSolutionName();
+			var targetSolutionName = "TargetSolution";
+			var sourceProjects = StaticLiterals.SolutionProjects
+											   .Concat(StaticLiterals.ProjectExtensions
+																	 .Select(e => $"{sourceSolutionName}{e}"));
 
-			Console.WriteLine("Template copier!");
-			Console.WriteLine("================");
-			Console.WriteLine();
-			Console.WriteLine($"Copy from: {SourcePath}");
-			Console.WriteLine($"Copy to:   {TargetPath}");
-			Console.WriteLine();
-
-			var t = new Thread(() =>
+			while (input.Equals("x") == false)
 			{
-				bool hpos = true;
-				int top = Console.CursorTop + 1;
+				Console.Clear();
+				Console.WriteLine("Solution copier!");
+				Console.WriteLine("================");
+				Console.WriteLine();
+				Console.WriteLine($"Copy '{sourceSolutionName}' from: {SourcePath}");
+				Console.WriteLine($"Copy to '{targetSolutionName}':   {Path.Combine(TargetPath, targetSolutionName)}");
+				Console.WriteLine();
+				Console.WriteLine("[1] Change target path");
+				Console.WriteLine("[2] Change target solution name");
+				Console.WriteLine("[3] Start copy process");
+				Console.WriteLine("[x|X] Exit");
+				Console.WriteLine();
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.Write("Choose: ");
+				input = Console.ReadLine().ToLower();
 
-				while (true)
+				if (input.Equals("1"))
 				{
-					Console.SetCursorPosition(0, top);
-					if (hpos)
-					{
-						Console.Write("---");
-					}
-					else
-					{
-						Console.Write(" | ");
-					}
-					hpos = !hpos;
-					Thread.Sleep(500);
+					Console.Write("Enter target path: ");
+					TargetPath = Console.ReadLine();
 				}
-			})
-			{
-				IsBackground = true
-			};
-			t.Start();
+				else if (input.Equals("2"))
+				{
+					Console.Write("Enter target solution name: ");
+					targetSolutionName = Console.ReadLine();
+				}
+				else if (input.Equals("3"))
+				{
+					var sc = new Copier();
 
-			var sc = new Copier();
-
-			sc.Copy(SourcePath, TargetPath, sourceProjects);
+					PrintBusyProgress();
+					sc.Copy(SourcePath, Path.Combine(TargetPath, targetSolutionName), sourceProjects);
+					runBusyProgress = false;
+				}
+				Console.ResetColor();
+			}
 		}
 
+		private static bool canBusyPrint = true;
+		private static bool runBusyProgress = false;
+		private static void PrintBusyProgress()
+		{
+			Console.WriteLine();
+			runBusyProgress = true;
+			Task.Factory.StartNew(async () =>
+			{
+				while (runBusyProgress)
+				{
+					if (canBusyPrint)
+					{
+						Console.Write(".");
+					}
+					await Task.Delay(250).ConfigureAwait(false);
+				}
+			});
+		}
 		private static string GetCurrentSolutionPath()
 		{
 			int endPos = AppContext.BaseDirectory
 								   .IndexOf($"{nameof(TemplateCopier)}", StringComparison.CurrentCultureIgnoreCase);
+			var result = AppContext.BaseDirectory[..endPos];
 
-			return AppContext.BaseDirectory[..endPos];
+			while (result.EndsWith("/"))
+			{
+				result = result[0..^1];
+			}
+			while (result.EndsWith("\\"))
+			{
+				result = result[0..^1];
+			}
+			return result;
+		}
+		private static string GetCurrentSolutionName()
+		{
+			var solutionPath = GetCurrentSolutionPath();
+
+			return GetSolutionNameByFile(solutionPath);
+		}
+		private static string GetSolutionNameByPath(string solutionPath)
+		{
+			return solutionPath.Split(new char[] { '\\', '/' })
+							   .Where(e => string.IsNullOrEmpty(e) == false)
+							   .Last();
+		}
+		private static string GetSolutionNameByFile(string solutionPath)
+		{
+			var fileInfo = new DirectoryInfo(solutionPath).GetFiles()
+														  .SingleOrDefault(f => f.Extension.Equals(".sln", StringComparison.CurrentCultureIgnoreCase));
+
+			return fileInfo != null ? Path.GetFileNameWithoutExtension(fileInfo.Name) : string.Empty;
 		}
 	}
 }
