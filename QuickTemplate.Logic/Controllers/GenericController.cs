@@ -14,6 +14,7 @@ namespace QuickTemplate.Logic.Controllers
         static partial void BeforeClassInitialize();
         static partial void AfterClassInitialize();
 
+        private DbSet<E> dbSet = null;
         public GenericController()
             : base(new DataContext.ProjectDbContext())
         {
@@ -25,7 +26,7 @@ namespace QuickTemplate.Logic.Controllers
 
         }
 
-        internal DbSet<E> EntitySet => Context.GetDbSet<E>();
+        internal DbSet<E> EntitySet => dbSet ??= Context.GetDbSet<E>();
         internal virtual IQueryable<E> QueryableSet => Context.QueryableSet<E>();
 
         #region Queries
