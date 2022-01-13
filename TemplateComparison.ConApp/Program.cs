@@ -19,6 +19,7 @@ namespace TemplateComparison.ConApp
             TargetPaths = new string[]
             {
                 Path.Combine(UserPath, @"source\repos\HtlLeo\CSSoftwareEngineering\BikeTogether"),
+                Path.Combine(UserPath, @"source\repos\HtlLeo\CSSoftwareEngineering\BikeTogether"),
             };
             // End: SmartNQuick-Projects
             ClassConstructed();
