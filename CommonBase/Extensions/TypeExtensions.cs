@@ -9,7 +9,7 @@ namespace CommonBase.Extensions
 {
     public static partial class TypeExtensions
     {
-        public static void CheckInterface(this Type type, string argName)
+        public static void CheckInterface(this Type? type, string argName)
         {
             if (type == null)
                 throw new ArgumentNullException(nameof(type));
@@ -126,12 +126,12 @@ namespace CommonBase.Extensions
             return result;
         }
 
-        public static PropertyInfo GetInterfaceProperty(this Type type, string name)
+        public static PropertyInfo? GetInterfaceProperty(this Type? type, string name)
         {
             type.CheckArgument(nameof(type));
 
-            return type.GetAllInterfacePropertyInfos()
-                       .SingleOrDefault(p => p.Name.Equals(name));
+            return type?.GetAllInterfacePropertyInfos()
+                        .SingleOrDefault(p => p.Name.Equals(name));
         }
 
         public static Dictionary<string, PropertyItem> GetAllTypeProperties(this Type typeObject)
@@ -235,7 +235,7 @@ namespace CommonBase.Extensions
         {
             genericType.CheckArgument(nameof(genericType));
 
-            Type instanceType = type;
+            Type? instanceType = type;
 
             while (instanceType != null)
             {

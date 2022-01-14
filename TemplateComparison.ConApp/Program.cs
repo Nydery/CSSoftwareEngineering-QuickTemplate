@@ -27,7 +27,7 @@ namespace TemplateComparison.ConApp
         static partial void ClassConstructing();
         static partial void ClassConstructed();
 
-        private static string HomePath { get; set; }
+        private static string? HomePath { get; set; }
         private static string UserPath { get; set; }
         private static string SourcePath { get; set; }
         private static string[] TargetPaths { get; set; }
@@ -50,12 +50,12 @@ namespace TemplateComparison.ConApp
                 PrintHeader(SourcePath, TargetPaths);
 
                 Console.Write($"Balancing [1..{TargetPaths.Length}|X...Quit]: ");
-                input = Console.ReadLine().ToLower();
+                input = Console.ReadLine()?.ToLower();
                 PrintBusyProgress();
-                running = input.Equals("x") == false;
+                running = input?.Equals("x") == false;
                 if (running)
                 {
-                    if (input.Equals("a"))
+                    if (input != null && input.Equals("a"))
                     {
                         foreach (var item in TargetLabels)
                         {
@@ -64,12 +64,12 @@ namespace TemplateComparison.ConApp
                     }
                     else
                     {
-                        var numbers = input.Trim()
-                                           .Split(',').Where(s => Int32.TryParse(s, out int n))
-                                           .Select(s => Int32.Parse(s))
-                                           .ToArray();
+                        var numbers = input?.Trim()
+                                            .Split(',').Where(s => Int32.TryParse(s, out int n))
+                                            .Select(s => Int32.Parse(s))
+                                            .ToArray();
 
-                        foreach (var number in numbers)
+                        foreach (var number in numbers ?? Array.Empty<int>())
                         {
                             if (number == TargetPaths.Length + 1)
                             {
@@ -89,7 +89,7 @@ namespace TemplateComparison.ConApp
             } while (running);
         }
 
-        private static bool canBusyPrint = true;
+        private static readonly bool canBusyPrint = true;
         private static bool runBusyProgress = false;
         private static void PrintBusyProgress()
         {
@@ -223,7 +223,7 @@ namespace TemplateComparison.ConApp
             var a2 = a1.Replace(sourceProjectName, targetProjectName);
             var a3 = a2.Replace(sourceSolutionName, targetSolutionName);
 
-            if (Directory.Exists(targetFileFolder) == false)
+            if (targetFileFolder != null && Directory.Exists(targetFileFolder) == false)
             {
                 Directory.CreateDirectory(targetFileFolder);
             }

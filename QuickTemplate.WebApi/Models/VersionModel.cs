@@ -10,7 +10,7 @@ namespace QuickTemplate.WebApi.Models
         /// Row version of the entity.
         /// </summary>
         [Timestamp]
-        public byte[] RowVersion { get; set; }
+        public byte[] RowVersion { get; set; } = Array.Empty<byte>();
     }
 }
 //MdEnd

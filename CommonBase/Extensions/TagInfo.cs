@@ -1,4 +1,6 @@
-﻿namespace TemplateCopier.ConApp.Extensions
+﻿//@BaseCode
+//MdStart
+namespace CommonBase.Extensions
 {
     public partial class TagInfo
     {
@@ -12,17 +14,17 @@
             }
             public string Source { get; }
         }
-        internal TagHeader Header { get; set; }
+        internal TagHeader? Header { get; set; }
 
-        public string Source => Header.Source;
-        public string StartTag { get; internal set; }
+        public string Source => Header?.Source ?? String.Empty;
+        public string StartTag { get; internal set; } = String.Empty;
         public int StartTagIndex { get; internal set; }
-        public string EndTag { get; internal set; }
+        public string EndTag { get; internal set; } = String.Empty;
         public int EndTagIndex { get; internal set; }
         public int EndIndex => EndTagIndex + EndTag.Length;
 
-        public string FullText => Source?.Partialstring(StartTagIndex, EndTagIndex + EndTag.Length - 1);
-        public string InnerText => Source?.Partialstring(StartTagIndex + StartTag.Length, EndTagIndex - 1);
+        public string FullText => Source.Partialstring(StartTagIndex, EndTagIndex + EndTag.Length - 1);
+        public string InnerText => Source.Partialstring(StartTagIndex + StartTag.Length, EndTagIndex - 1);
 
         public string GetText()
         {
@@ -53,3 +55,4 @@
         }
     }
 }
+//MdEnd

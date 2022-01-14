@@ -7,18 +7,18 @@
 			ClassConstructing();
 			HomePath = (Environment.OSVersion.Platform == PlatformID.Unix ||
 						Environment.OSVersion.Platform == PlatformID.MacOSX)
-					   ? Environment.GetEnvironmentVariable("HOME")
+                       ? Environment.GetEnvironmentVariable("HOME")
 					   : Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%");
 
 			UserPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 			SourcePath = GetCurrentSolutionPath();
-			TargetPath = Directory.GetParent(SourcePath).FullName;
+			TargetPath = Directory.GetParent(SourcePath)?.FullName ?? String.Empty;
 			ClassConstructed();
 		}
 		static partial void ClassConstructing();
 		static partial void ClassConstructed();
 
-		private static string HomePath { get; set; }
+		private static string? HomePath { get; set; }
 		private static string UserPath { get; set; }
 		private static string SourcePath { get; set; }
 		private static string TargetPath { get; set; }
@@ -30,8 +30,7 @@
 			var sourceSolutionName = GetCurrentSolutionName();
 			var targetSolutionName = "TargetSolution";
 			var sourceProjects = StaticLiterals.SolutionProjects
-											   .Concat(StaticLiterals.ProjectExtensions
-																	 .Select(e => $"{sourceSolutionName}{e}"));
+											   .Concat(StaticLiterals.ProjectExtensions.Select(e => $"{sourceSolutionName}{e}"));
 
 			while (input.Equals("x") == false)
 			{
@@ -49,17 +48,17 @@
 				Console.WriteLine();
 				Console.ForegroundColor = ConsoleColor.Yellow;
 				Console.Write("Choose: ");
-				input = Console.ReadLine().ToLower();
+				input = Console.ReadLine()?.ToLower() ?? String.Empty;
 
 				if (input.Equals("1"))
 				{
 					Console.Write("Enter target path: ");
-					TargetPath = Console.ReadLine();
+					TargetPath = Console.ReadLine() ?? String.Empty;
 				}
 				else if (input.Equals("2"))
 				{
 					Console.Write("Enter target solution name: ");
-					targetSolutionName = Console.ReadLine();
+					targetSolutionName = Console.ReadLine() ?? String.Empty;
 				}
 				else if (input.Equals("3"))
 				{
@@ -73,7 +72,7 @@
 			}
 		}
 
-		private static bool canBusyPrint = true;
+		private static readonly bool canBusyPrint = true;
 		private static bool runBusyProgress = false;
 		private static void PrintBusyProgress()
 		{

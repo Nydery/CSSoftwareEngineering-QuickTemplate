@@ -7,7 +7,7 @@ namespace QuickTemplate.Logic.DataContext
 {
     internal partial class ProjectDbContext : DbContext
     {
-        private static string ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Database=QuickTemplateDb;Integrated Security=True";
+        private static readonly string ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Database=QuickTemplateDb;Integrated Security=True";
         static ProjectDbContext()
         {
             BeforeClassInitialize();
@@ -23,7 +23,7 @@ namespace QuickTemplate.Logic.DataContext
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in {System.Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine(message: $"Error in {System.Reflection.MethodBase.GetCurrentMethod()?.Name}: {ex.Message}");
             }
             AfterClassInitialize();
         }
@@ -43,10 +43,13 @@ namespace QuickTemplate.Logic.DataContext
             var result = default(DbSet<E>);
 
             GetDbSet(ref result, ref handled);
-
+            if (handled == false || result == null)
+            {
+                result = Set<E>();
+            }
             return result;
         }
-        partial void GetDbSet<E>(ref DbSet<E> dbSet, ref bool handled) where E : Entities.IdentityObject;
+        partial void GetDbSet<E>(ref DbSet<E>? dbSet, ref bool handled) where E : Entities.IdentityObject;
         public IQueryable<E> QueryableSet<E>() where E : Entities.IdentityObject
         {
             return GetDbSet<E>();

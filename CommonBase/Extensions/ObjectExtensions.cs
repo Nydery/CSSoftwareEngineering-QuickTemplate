@@ -1,18 +1,16 @@
 ﻿//@BaseCode
 //MdStart
-using System;
-using System.Collections.Generic;
 
 namespace CommonBase.Extensions
 {
     public static partial class ObjectExtensions
     {
-        public static void CheckArgument(this object source, string argName)
+        public static void CheckArgument(this object? source, string argName)
         {
             if (source == null)
                 throw new ArgumentNullException(argName);
         }
-        public static void CheckNotNull(this object source, string itemName)
+        public static void CheckNotNull(this object? source, string itemName)
         {
             if (source == null)
                 throw new ArgumentNullException(itemName);
@@ -32,14 +30,14 @@ namespace CommonBase.Extensions
             CopyProperties(target, source, filter, null);
             return target;
         }
-        public static T CopyTo<T>(this object source, Func<string, string> mapping) where T : class, new()
+        public static T CopyTo<T>(this object source, Func<string, string>? mapping) where T : class, new()
         {
             var target = new T();
 
             CopyProperties(target, source, null, mapping);
             return target;
         }
-        public static T CopyTo<T>(this object source, Func<string, bool> filter, Func<string, string> mapping) where T : class, new()
+        public static T CopyTo<T>(this object source, Func<string, bool>? filter, Func<string, string>? mapping) where T : class, new()
         {
             var target = new T();
 
@@ -97,7 +95,7 @@ namespace CommonBase.Extensions
         {
             CopyProperties(target, source, null, null);
         }
-        public static void CopyProperties(object target, object source, Func<string, bool> filter, Func<string, string> mapping)
+        public static void CopyProperties(object target, object source, Func<string, bool>? filter, Func<string, string>? mapping)
         {
             target.CheckArgument(nameof(target));
             source.CheckArgument(nameof(source));
@@ -108,7 +106,7 @@ namespace CommonBase.Extensions
             SetPropertyValues(target, source, filter, mapping, targetPropertyInfos, sourcePropertyInfos);
         }
 
-        private static void SetPropertyValues(object target, object source, Func<string, bool> filter, Func<string, string> mapping, Dictionary<string, PropertyItem> targetPropertyInfos, Dictionary<string, PropertyItem> sourcePropertyInfos)
+        private static void SetPropertyValues(object target, object source, Func<string, bool>? filter, Func<string, string>? mapping, Dictionary<string, PropertyItem> targetPropertyInfos, Dictionary<string, PropertyItem> sourcePropertyInfos)
         {
             filter ??= (n => true);
             mapping ??= (n => n);
@@ -123,27 +121,27 @@ namespace CommonBase.Extensions
                     {
                         if (propertyItemSource.IsStringType)
                         {
-                            object value = propertyItemSource.PropertyInfo.GetValue(source, null);
+                            object? value = propertyItemSource.PropertyInfo.GetValue(source, null);
 
                             propertyItemTarget.Value.PropertyInfo.SetValue(target, value, null);
                         }
                         else if (propertyItemSource.IsArrayType)
                         {
-                            object value = propertyItemSource.PropertyInfo.GetValue(source, null);
+                            object? value = propertyItemSource.PropertyInfo.GetValue(source, null);
 
                             propertyItemTarget.Value.PropertyInfo.SetValue(target, value, null);
                         }
                         else if (propertyItemSource.PropertyInfo.PropertyType.IsValueType
                             && propertyItemTarget.Value.PropertyInfo.PropertyType.IsValueType)
                         {
-                            object value = propertyItemSource.PropertyInfo.GetValue(source, null);
+                            object? value = propertyItemSource.PropertyInfo.GetValue(source, null);
 
                             propertyItemTarget.Value.PropertyInfo.SetValue(target, value, null);
                         }
                         else if (propertyItemSource.IsComplexType)
                         {
-                            object srcValue = propertyItemSource.PropertyInfo.GetValue(source);
-                            object tarValue = propertyItemTarget.Value.PropertyInfo.GetValue(target);
+                            object? srcValue = propertyItemSource.PropertyInfo.GetValue(source);
+                            object? tarValue = propertyItemTarget.Value.PropertyInfo.GetValue(target);
 
                             if (srcValue != null && tarValue != null)
                             {

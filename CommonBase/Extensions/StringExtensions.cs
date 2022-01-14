@@ -1,8 +1,10 @@
-﻿using System.Security.Cryptography;
+﻿//@BaseCode
+//MdStart
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace TemplateCopier.ConApp.Extensions
+namespace CommonBase.Extensions
 {
     public static partial class StringExtensions
     {
@@ -12,10 +14,8 @@ namespace TemplateCopier.ConApp.Extensions
                 throw new ArgumentException("String is null or empty!", argName);
         }
 
-        public static bool TryParse(this string value, Type type, out object typeValue)
+        public static bool TryParse(this string value, Type type, out object? typeValue)
         {
-            type.CheckArgument(nameof(type));
-
             bool result = false;
 
             if (value == null)
@@ -87,7 +87,7 @@ namespace TemplateCopier.ConApp.Extensions
 
             if (sIdx > -1 && eIdx > -1 && sIdx <= eIdx)
             {
-                result = source.Substring(0, sIdx + startText.Length);
+                result = source[..(sIdx + startText.Length)];
                 result += replaceText;
                 result += source[eIdx..];
             }
@@ -118,7 +118,7 @@ namespace TemplateCopier.ConApp.Extensions
             var splitSource = source.Split(separator);
             var header = splitSource.FirstOrDefault();
 
-            return splitSource.Skip(1).Select(d => mapper(d, header));
+            return splitSource.Skip(1).Select(d => mapper(d, header ?? Array.Empty<string>()));
         }
 
         public static string GetValue(this string source, string defaultValue)
@@ -149,7 +149,7 @@ namespace TemplateCopier.ConApp.Extensions
                 EndTag = tagInfo.EndTag;
                 EndTagIndex = tagInfo.EndTagIndex;
             }
-            public string Text { get; internal set; }
+            public string Text { get; internal set; } = String.Empty;
         }
 
         public static IEnumerable<DivideInfo> Divide(this string text, string[] tags)
@@ -431,7 +431,7 @@ namespace TemplateCopier.ConApp.Extensions
                     lines[i] = lines[i].SetIndent(count);
                 }
             }
-            return lines;
+            return lines ?? Array.Empty<string>();
         }
         /// <summary>
         /// This method adds n indents to a string array.
@@ -504,11 +504,11 @@ namespace TemplateCopier.ConApp.Extensions
             return result;
         }
 
-        public static IEnumerable<string> Trim(this IEnumerable<string> source)
+        public static IEnumerable<string?> Trim(this IEnumerable<string> source)
         {
             source.CheckArgument(nameof(source));
 
-            var result = new List<string>();
+            var result = new List<string?>();
             var prvEmpty = true;
 
             foreach (var item in source)
@@ -528,7 +528,7 @@ namespace TemplateCopier.ConApp.Extensions
 
             if (string.IsNullOrEmpty(lastElem))
             {
-                result.Remove(lastElem);
+                _ = result.Remove(lastElem);
             }
             return result;
         }
@@ -551,7 +551,7 @@ namespace TemplateCopier.ConApp.Extensions
 
                 result = text.Partialstring(f, t);
             }
-            return result;
+            return result ?? String.Empty;
         }
 
         /// <summary>
@@ -572,7 +572,7 @@ namespace TemplateCopier.ConApp.Extensions
 
                 result = text.Partialstring(f, t);
             }
-            return result;
+            return result ?? String.Empty;
         }
 
         /// <summary>
@@ -823,12 +823,12 @@ namespace TemplateCopier.ConApp.Extensions
                     text = text.Replace(c, '_');
                 }
             }
-            return text;
+            return text ?? String.Empty;
         }
 
-        public static IEnumerable<T> ToEnumerable<T>(this string source, string separator)
+        public static IEnumerable<T?> ToEnumerable<T>(this string source, string separator)
         {
-            List<T> result = new();
+            List<T?> result = new();
 
             if (string.IsNullOrEmpty(source) == false)
             {
@@ -859,13 +859,13 @@ namespace TemplateCopier.ConApp.Extensions
 
         public static byte[] ToByteArray(this string source)
         {
-            byte[] result = null;
+            byte[]? result = null;
 
             if (source != null)
             {
                 result = new ASCIIEncoding().GetBytes(source);
             }
-            return result;
+            return result ?? Array.Empty<byte>();
         }
 
         public static string Encrypt(this string text, string keyString)
@@ -965,3 +965,4 @@ namespace TemplateCopier.ConApp.Extensions
         }
     }
 }
+//MdEnd

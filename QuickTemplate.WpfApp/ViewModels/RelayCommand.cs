@@ -7,18 +7,15 @@ namespace QuickTemplate.WpfApp.ViewModels
 {
     public class RelayCommand : ICommand
     {
-        private readonly Action<object> execute;
-        private readonly Predicate<object> canExecute;
-        private RelayCommand(Action<object> execute, Predicate<object> canExecute)
+        private readonly Action<object?> execute;
+        private readonly Predicate<object?>? canExecute;
+        private RelayCommand(Action<object?> execute, Predicate<object?>? canExecute)
         {
-            if (execute == null)
-                throw new ArgumentNullException(nameof(execute));
-
-            this.execute = execute;
+            this.execute = execute ?? throw new ArgumentNullException(nameof(execute));
             this.canExecute = canExecute;
         }
 
-        public event EventHandler CanExecuteChanged
+        public event EventHandler? CanExecuteChanged
         {
             add
             {
@@ -30,22 +27,22 @@ namespace QuickTemplate.WpfApp.ViewModels
             }
         }
 
-        public bool CanExecute(object parameter)
+        public bool CanExecute(object? parameter)
         {
             return canExecute == null || canExecute(parameter);
         }
 
-        public void Execute(object parameter)
+        public void Execute(object? parameter)
         {
             execute(parameter);
         }
 
         #region Factory mothods
-        public static ICommand CreateCommand(ref ICommand command, Action<object> execute)
+        public static ICommand CreateCommand(ref ICommand command, Action<object?> execute)
         {
             return CreateCommand(ref command, execute, null);
         }
-        public static ICommand CreateCommand(ref ICommand command, Action<object> execute, Predicate<object> canExecute)
+        public static ICommand CreateCommand(ref ICommand command, Action<object?> execute, Predicate<object?>? canExecute)
         {
             if (command == null)
             {

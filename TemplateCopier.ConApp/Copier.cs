@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
-using TemplateCopier.ConApp.Extensions;
 
 namespace TemplateCopier.ConApp
 {
@@ -156,7 +155,7 @@ namespace TemplateCopier.ConApp
         {
             var sourceSolutionFolder = new DirectoryInfo(sourceSolutionDirectory).Name;
             var sourceSolutionFilePath = Directory.GetFiles(sourceSolutionDirectory, $"*{StaticLiterals.SolutionFileExtension}", SearchOption.AllDirectories)
-                                                  .FirstOrDefault(f => f.EndsWith($"{sourceSolutionFolder}{StaticLiterals.SolutionFileExtension}", StringComparison.CurrentCultureIgnoreCase));
+                                                  .FirstOrDefault(f => f.EndsWith($"{sourceSolutionFolder}{StaticLiterals.SolutionFileExtension}", StringComparison.CurrentCultureIgnoreCase)) ?? String.Empty;
             var sourceSolutionPath = Path.GetDirectoryName(sourceSolutionFilePath);
             var targetSolutionFolder = new DirectoryInfo(targetSolutionDirectory).Name;
             var targetSolutionPath = targetSolutionDirectory;
@@ -197,7 +196,7 @@ namespace TemplateCopier.ConApp
             {
                 var item = items[i];
 
-                if (item.Contains("="))
+                if (item.Contains('='))
                 {
                     var data = item.Split("=");
 

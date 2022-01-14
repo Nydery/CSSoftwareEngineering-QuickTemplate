@@ -14,16 +14,11 @@ namespace QuickTemplate.Logic.Controllers
         static partial void BeforeClassInitialize();
         static partial void AfterClassInitialize();
 
+        private readonly bool contextOwner;
         internal ProjectDbContext Context { get; private set; }
-        private bool contextOwner;
 
         internal ControllerObject(ProjectDbContext context)
         {
-            if (context is null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
             Context = context;
             contextOwner = true;
         }
@@ -52,7 +47,6 @@ namespace QuickTemplate.Logic.Controllers
                     {
                         Context.Dispose();
                     }
-                    Context = null;
                 }
 
                 // TODO: free unmanaged resources (unmanaged objects) and override finalizer
