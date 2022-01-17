@@ -50,10 +50,6 @@ namespace QuickTemplate.Logic.DataContext
             return result;
         }
         partial void GetDbSet<E>(ref DbSet<E>? dbSet, ref bool handled) where E : Entities.IdentityObject;
-        public IQueryable<E> QueryableSet<E>() where E : Entities.IdentityObject
-        {
-            return GetDbSet<E>();
-        }
     }
 }
 //MdEnd
