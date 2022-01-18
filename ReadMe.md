@@ -250,7 +250,11 @@ namespace QTMusicStoreLight.Logic.Entities
         public Genre? Genre { get; set; }
     }
 }
-```
+```  
+
+Das Datenmodell ist wie nachfolgend dargestellt in ein Objektmodell transformiert worden:
+
+![QTMusicStoreLight-Entities](QTMusicStoreLightEntities.png) 
 
 ### Definition vom Datenbank-Kontext  
 
