@@ -15,13 +15,13 @@ namespace TemplateComparison.ConApp
             UserPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             SourcePath = GetCurrentSolutionPath();
 
-            // Project: SmartNQuick-Projects
+            // Project: QuickTemplate-Projects
             TargetPaths = new string[]
             {
-                Path.Combine(UserPath, @"source\repos\HtlLeo\CSSoftwareEngineering\BikeTogether"),
+                //Path.Combine(UserPath, @"source\repos\HtlLeo\CSSoftwareEngineering\BikeTogether"),
                 Path.Combine(UserPath, @"source\repos\HtlLeo\CSSoftwareEngineering\QTMusicStoreLight"),
             };
-            // End: SmartNQuick-Projects
+            // End: QuickTemplate-Projects
             ClassConstructed();
         }
         static partial void ClassConstructing();
