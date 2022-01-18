@@ -39,9 +39,13 @@ Dem Entwickler stehen unterschiedliche Hilfsmittel für die Erstellung von Projek
 
 |Projekt|Beschreibung|Typ|Abhängigkeit
 |---|---|---|---|
-|**TemplateCopier.ConApp**|Diese Anwendung dient zum Kopieren des *QuickTemplate*. Die Vorlage dient als Basis für viele zukünftige Projekte und muss dementsprechend kopiert werden. Der *TemplateCopier* kopiert alle Teilprojekte in den Zielordner und führt eine Umbenennung der Komponenten durch.|Console|CommonBase
+|**TemplateCopier.ConApp**|Diese Anwendung dient zum Kopieren des ***QuickTemplate***. Die Vorlage dient als Basis für viele zukünftige Projekte und muss dementsprechend kopiert werden. Der *TemplateCopier* kopiert alle Teilprojekte in den Zielordner und führt eine Umbenennung der Komponenten durch.|Console|CommonBase
 |**TemplateComparsion.ConApp**|Dieses Projekt dient zum Abgleich aller mit dem Template erstellten Domän-Projekten.|Console|CommonBase
 
+# Verwendung der Vorlage  
+
+Nachfolgend werden die einzelnen Schritte von der Vorlage ***QuickTemplate*** bis zum konkreten Projekt ***QTMusicStoreLight*** erläutert. Das Projekt ist eine einfache Anwendung zur Demonstration von der Verwendung der Vorlage. Im Projekt ***QTMusicStoreLight*** werden Künstler (Artisten) und deren produzierten Alben verwaltet. Jedes Album hat ein Genre (Rock, Pop, Klassik usw.) zugeordnet. Ein Datenmodell ist im nachfolgendem Abschnitt definiert.
+ 
 ## System-Erstellungs-Prozess
 
 ### Übersicht  
