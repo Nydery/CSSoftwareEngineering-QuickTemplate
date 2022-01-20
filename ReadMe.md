@@ -59,11 +59,11 @@ Wenn nun ein einfacher Service oder eine Anwendung entwickelt werden soll, dann 
 **ACHTUNG:** Der Solution-Ordner von der Vorlage muss *QuickTemplate* heißen.
 
 #### Projekterstellung
-Die nachfolgenden Abbildung zeigt den schematischen Erstellungs-Ablauf für ein Domain-Projekt:  
+Die nachfolgenden Abbildung zeigt den schematischen Erstellungs-Prozess für ein Domain-Projekt:  
 
-![Erstellungsprozess](CreateProject.png)
+![Create domain project overview](CreateProjectOverview.png)  
 
-Als Ausgangsbasis wird die Vorlage ***QuickTemplate*** verwendet. Diese Vorlage wird mit Hilfe dem Hilfsprogramm '*TemplateCopier.ConApp*' in ein Verzeichnis eigener Wahl kopiert. In diesem Verzeichnis werden alle Projektteile von der Vorlage kopiert und die Namen der Projekte und Komponenten werden entsprechend angepasst. Alle Projekte mit einem domainspezifischen Namen werden durch den Namen des Verzeichnisses ersetzt.  
+Als Ausgangsbasis wird die Vorlage ***QuickTemplate*** verwendet. Diese Vorlage wird mit Hilfe dem Hilfsprogramm ***'TemplateCopier.ConApp'*** in ein Verzeichnis eigener Wahl kopiert. In diesem Verzeichnis werden alle Projektteile (mit Ausnahme der Hilfsprogramme *TemplateCopier.ConApp* und *TemplateComparison.ConApp*) von der Vorlage kopiert und die Namen der Projekte und Komponenten werden entsprechend angepasst. Alle Projekte mit dem Prefix ***QuickTemplate*** werden mit dem domainspezifischen Namen des Verzeichnisses ersetzt. Beim Kopieren der Dateien von der Vorlage werden alle Dateien mit dem Label ***@BaseCode*** durch den Label ***@CodeCopy*** ersetzt. Diese Label werden für den Abgleich-Prozess verwendet.
 
 Zum Beispiel soll ein Projekt mit dem Namen 'QTMusicStoreLight' erstellt werden. Im 'TemplateCopier' werden folgende Parameter eingestellt:  
 
@@ -95,7 +95,7 @@ Nach der Ausführen der Option ***'[3] Start copy process'*** befindet sich folge
 
 Im Projekt ***QuickTemplate*** sind alle Code-Teile, welche als Basis-Code in andere Projekte verwendet werden, mit einem Label ***@BaseCode*** markiert. Dieser Label wird im Zielprojekt mit dem Label ***@CodeCopy*** ersetzt. Das hat den Vorteil, dass Änderungen in der Vorlage auf die bereits bestehenden Projekte übertragen werden können (nähere Informationen dazu gibt es später).  
 
-> **ACHTUNG:** Im Domain-Projekt dürfen keine Änderungen von Dateien mit dem Label ***@CodeCopy*** durchgeführt werden, da diesen beim nächsten Abgleich wieder überschrieben werden. Sollen dennoch Änderungen vorgenommen werden, dann muss der Label ***@CodeCopy*** geändert (z.B.: @CustomCode) oder entfernt werden. Damit wird diese Datei auch vom Abgleich, mit der Verlage, ausgeschlossen.
+> **ACHTUNG:** Im Domain-Projekt dürfen keine Änderungen von Dateien mit dem Label ***@CodeCopy*** durchgeführt werden, da diesen beim nächsten Abgleich wieder überschrieben werden. Sollen dennoch Änderungen vorgenommen werden, dann muss der Label ***@CodeCopy*** geändert (z.B.: @CustomCode) oder entfernt werden. Damit wird diese Datei vom Abgleich, mit der Verlage, ausgeschlossen.
 
 ### Abgleich vom ***QuickTemplate*** mit den bestehenden Domain-Projekten  
 
