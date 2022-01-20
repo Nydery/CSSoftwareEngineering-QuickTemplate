@@ -1,6 +1,5 @@
 ﻿//@BaseCode
 //MdStart
-using Microsoft.EntityFrameworkCore;
 
 namespace QuickTemplate.Logic.Controllers
 {
