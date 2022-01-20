@@ -56,7 +56,8 @@ Wenn nun ein einfacher Service oder eine Anwendung entwickelt werden soll, dann 
 
 - Erstellen eines Ordners (z.B.: Develop)
 - Herunterladen des Repositories ***QuickTemplate*** von GitHub (<https://github.com/leoggehrer/CSSoftwareEngineering-QuickTemplate> und in den Ordner 'Develop' speichern.  
-**ACHTUNG:** Der Solution-Ordner von der Vorlage muss *QuickTemplate* heißen.
+
+> **ACHTUNG:** Der Solution-Ordner von der Vorlage muss ***QuickTemplate*** heißen.
 
 #### Projekterstellung
 Die nachfolgenden Abbildung zeigt den schematischen Erstellungs-Prozess für ein Domain-Projekt:  
@@ -101,7 +102,7 @@ Im Projekt ***QuickTemplate*** sind alle Code-Teile, welche als Basis-Code in an
 
 In der Software-Entwicklung gibt es immer wieder Verbesserungen und Erweiterungen. Das betrifft die Vorlage ***QuickTemplate*** genauso wie alle anderen Projekte. Nun stellt sich die Frage: Wie können Verbesserungen und/oder Erweiterungen von der Vorlage auf die Domain-Projekte übertragen werden? In der Vorlage sind die Quellcode-Dateien mit den Labels ***@BaseCode*** gekennzeichnet. Beim Kopieren werden diese Labels durch den Label ***@CodeCopy*** ersetzt. Mit dem Hilfsprogramm *TemplateComparison.ConApp* werden die Dateien mit dem Label ***@BaseCode*** und ***@CodeCopy*** abgeglichen. In der folgenden Skizze ist dieser Prozess dargestellt:
 
-![Template-Comparsion-Prozess](TemplateComparsion.png)
+![Template-Comparsion-Overview](TemplateComparsionOverview.png)
 
 Für den Abgleichprozess müssen im Projekt ***TemplateComparsion.ConApp*** in der Datei ***Program.cs*** folgende Eintellungen definiert werden:
 
@@ -129,7 +130,7 @@ Source: ...\source\repos\HtlLeo\CSSoftwareEngineering\QuickTemplate\
 Balancing [1..1|X...Quit]:
 ```
 
-Wird nun die Option **1 oder a** aktiviert, dann werden alle Dateien im Projekt **QuickTemplate** mit der Kennzeichnung **@BaseCopy** mit den Dateien im Projekt **QTMusicStoreLight** mit der Kennzeichnung **@CodeCopy** abgeglichen.  
+Wird nun die Option **[1 oder a]** aktiviert, dann werden alle Dateien im Projekt **QuickTemplate** mit der Kennzeichnung **@BaseCopy** mit den Dateien im Projekt **QTMusicStoreLight** mit der Kennzeichnung **@CodeCopy** abgeglichen.  
 
 ### Erstellen der Entitäten  
 
@@ -151,8 +152,7 @@ Das Datenmodell für den **MusicStoreLight** ist wie folgt definiert:
 
 ```
 
-
-### Definition von *Artist*
+### Definition von ***Artist***
 
 | Name | Type | MaxLength | Nullable |Unique|
 |------|------|-----------|----------|------|
@@ -160,7 +160,7 @@ Das Datenmodell für den **MusicStoreLight** ist wie folgt definiert:
 | RowVersion | byte[] |---|No|---|
 | Name | String | 128 | No |Yes|
 
-### Definition von *Album*  
+### Definition von ***Album***  
 
 | Name | Type | MaxLength | Nullable |Unique|
 |------|------|-----------|----------|------|
@@ -170,7 +170,7 @@ Das Datenmodell für den **MusicStoreLight** ist wie folgt definiert:
 | GenreId | int |---|---|---|
 | Title | String | 256 | No |Yes|
 
-### Definition von *Genre*
+### Definition von ***Genre***
 
 | Name | Type | MaxLength | Nullable |Unique|
 |------|------|-----------|----------|------|
@@ -180,7 +180,7 @@ Das Datenmodell für den **MusicStoreLight** ist wie folgt definiert:
 
 Die Entitäten werden im Projekt ***QTMusicStoreLight.Logic*** im Ordner ***Entities*** definiert. Nachdem für die Entitäten als Zugriffsstrategie ***Cuncurrency Optimistic*** verwendet wird (RowVersion ist definiert), werden die Entitäten vom bereits definierten ***VersionObject*** abgeleitet.
 
-Die Implementierung der Entität *Artist*:  
+Die Implementierung der Entität ***Artist***:  
 
 ```csharp
 using Microsoft.EntityFrameworkCore;
@@ -203,7 +203,7 @@ namespace QTMusicStoreLight.Logic.Entities
 }
 ```
 
-Die Implementierung der Entität *Genre*:  
+Die Implementierung der Entität ***Genre***:  
 
 ```csharp
 using Microsoft.EntityFrameworkCore;
@@ -226,7 +226,7 @@ namespace QTMusicStoreLight.Logic.Entities
 }
 ```
 
-Die Implementierung der Entität *Album*:  
+Die Implementierung der Entität ***Album***:  
 
 ```csharp
 using Microsoft.EntityFrameworkCore;
@@ -300,7 +300,7 @@ Wie aus der obigen Implementierung ersichtlich ist, werden für die entsprechende
 
 Der generische Kontroller ***'GenericController&lt;E&gt;'*** implementiert bereits die ***'CRUD'*** Funktionen für eine Entität. Um diese Funktionen für jede Entität zur Verfügung zu stellen, muss für jede Entität ein eigener Kontroller angelegt werden. Die Kontroller werden im Projekt ***QTMusicStoreLight.Logic*** im Ordner ***Controllers*** definiert.  
 
-#### Kontroller für die Entität ***'Artist'*** erstellen
+#### Kontroller für die Entität *Artist* erstellen
 
 ```csharp
 namespace QTMusicStoreLight.Logic.Controllers
@@ -318,7 +318,7 @@ namespace QTMusicStoreLight.Logic.Controllers
 }
 ```
 
-#### Kontroller für die Entität ***'Album'*** erstellen
+#### Kontroller für die Entität *Album* erstellen
 
 ```csharp
 namespace QTMusicStoreLight.Logic.Controllers
@@ -336,7 +336,7 @@ namespace QTMusicStoreLight.Logic.Controllers
 }
 ```
 
-#### Kontroller für die Entität ***'Genre'*** erstellen
+#### Kontroller für die Entität *Genre* erstellen
 
 ```csharp
 namespace QTMusicStoreLight.Logic.Controllers
@@ -355,6 +355,5 @@ namespace QTMusicStoreLight.Logic.Controllers
 ```
 
 > **ACHTUNG:**  Die konkreten Kontroller werden mit dem Schlüsselwort ***'sealed'*** spezifiziert. Die Erklärung folgt zu einem späteren Zeitpunkt.  
-
 
 **Viel Spaß beim Testen!**
