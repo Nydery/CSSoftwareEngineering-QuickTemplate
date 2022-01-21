@@ -28,6 +28,10 @@ namespace QuickTemplate.Logic.Controllers
         internal DbSet<E> EntitySet => dbSet ??= Context.GetDbSet<E>();
 
         #region Queries
+        public virtual Task<E[]> GetAllAsync()
+        {
+            return EntitySet.AsNoTracking().ToArrayAsync();
+        }
         public virtual ValueTask<E?> GetByIdAsync(int id)
         {
             return EntitySet.FindAsync(id); 
