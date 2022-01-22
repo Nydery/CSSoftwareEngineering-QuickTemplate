@@ -4,6 +4,19 @@
 Das Projekt ***QuickTemplate*** ist eine Vorlage für die Erstellung von datenzentrierten Anwendungen. Ausgehend von dieser Vorlage
 können neue Anwendungen erstellt und erweitert werden. 
 
+# Inhaltsverzeichnis
+1. [Infrastruktur](#infrastruktur)
+2. [Template](#template)
+3. [Entwicklerwerkzeuge](#entwicklerwerkzeuge)
+4. [Verwendung der Vorlage](#verwendung-der-Vorlage)
+   1. [Projekterstellung](#projekterstellung)
+   2. [Abgleich mit dem QuickTemplate](#abgleich-mit-dem-quicktemplate)
+   3. [Erstellen der Entitäten](#erstellen-der-entitaeten)
+   4. [Definition vom Datenbank-Kontext](#definition-vom-datenbank-kontext)
+   5. [Erstellen der Kontroller](#erstellen-der-kontroller)
+   6. [Erstellen der Datenbank](#erstellen-der-datenbank)
+   7. [Importieren von Daten](#importieren-von-daten)
+
 ## Infrastruktur
 
 Zur Umsetzung des Projektes wird DotNetCore (6.0 und höher) als Framework, die Programmiersprache CSharp (C#) und die Entwicklungsumgebung Visual Studio 2022 Community verwendet. Alle Komponenten können kostenlos aus dem Internet heruntergeladen werden.
@@ -48,18 +61,16 @@ Nachfolgend werden die einzelnen Schritte von der Vorlage ***QuickTemplate*** bi
  
 ## System-Erstellungs-Prozess
 
-### Übersicht  
-
 Wenn nun ein einfacher Service oder eine Anwendung entwickelt werden soll, dann kann die Vorlage ***QuickTemplate*** als Ausgangsbasis verwendet und weiterentwickelt werden. Dazu empfiehlt sich folgende Vorgangsweise:  
 
-#### Vorbereitungen
+### Vorbereitungen
 
 - Erstellen eines Ordners (z.B.: Develop)
-- Herunterladen des Repositories ***QuickTemplate*** von GitHub (<https://github.com/leoggehrer/CSSoftwareEngineering-QuickTemplate> und in den Ordner 'Develop' speichern.  
+- Herunterladen des Repositories ***QuickTemplate*** vom [GitHub](<https://github.com/leoggehrer/CSSoftwareEngineering-QuickTemplate>) und in einem Ordner speichern.  
 
 > **ACHTUNG:** Der Solution-Ordner von der Vorlage muss ***QuickTemplate*** heißen.
 
-#### Projekterstellung
+### Projekterstellung
 Die nachfolgenden Abbildung zeigt den schematischen Erstellungs-Prozess für ein Domain-Projekt:  
 
 ![Create domain project overview](CreateProjectOverview.png)  
@@ -98,7 +109,7 @@ Im Projekt ***QuickTemplate*** sind alle Code-Teile, welche als Basis-Code in an
 
 > **ACHTUNG:** Im Domain-Projekt dürfen keine Änderungen von Dateien mit dem Label ***@CodeCopy*** durchgeführt werden, da diesen beim nächsten Abgleich wieder überschrieben werden. Sollen dennoch Änderungen vorgenommen werden, dann muss der Label ***@CodeCopy*** geändert (z.B.: @CustomCode) oder entfernt werden. Damit wird diese Datei vom Abgleich, mit der Verlage, ausgeschlossen.
 
-### Abgleich vom ***QuickTemplate*** mit den bestehenden Domain-Projekten  
+## Abgleich mit dem QuickTemplate
 
 In der Software-Entwicklung gibt es immer wieder Verbesserungen und Erweiterungen. Das betrifft die Vorlage ***QuickTemplate*** genauso wie alle anderen Projekte. Nun stellt sich die Frage: Wie können Verbesserungen und/oder Erweiterungen von der Vorlage auf die Domain-Projekte übertragen werden? In der Vorlage sind die Quellcode-Dateien mit den Labels ***@BaseCode*** gekennzeichnet. Beim Kopieren werden diese Labels durch den Label ***@CodeCopy*** ersetzt. Mit dem Hilfsprogramm *TemplateComparison.ConApp* werden die Dateien mit dem Label ***@BaseCode*** und ***@CodeCopy*** abgeglichen. In der folgenden Skizze ist dieser Prozess dargestellt:
 
@@ -132,7 +143,7 @@ Balancing [1..1|X...Quit]:
 
 Wird nun die Option **[1 oder a]** aktiviert, dann werden alle Dateien im Projekt **QuickTemplate** mit der Kennzeichnung **@BaseCopy** mit den Dateien im Projekt **QTMusicStoreLight** mit der Kennzeichnung **@CodeCopy** abgeglichen.  
 
-### Erstellen der Entitäten  
+### Erstellen der Entitäten<a name="erstellen-der-entitaeten"/>  
 
 Das Datenmodell für den **MusicStoreLight** ist wie folgt definiert:
 
@@ -183,10 +194,6 @@ Die Entitäten werden im Projekt ***QTMusicStoreLight.Logic*** im Ordner ***Entit
 Die Implementierung der Entität ***Artist***:  
 
 ```csharp
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace QTMusicStoreLight.Logic.Entities
 {
     [Table("Artists", Schema = "App")]
@@ -206,10 +213,6 @@ namespace QTMusicStoreLight.Logic.Entities
 Die Implementierung der Entität ***Genre***:  
 
 ```csharp
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace QTMusicStoreLight.Logic.Entities
 {
     [Table("Genres", Schema = "App")]
@@ -229,10 +232,6 @@ namespace QTMusicStoreLight.Logic.Entities
 Die Implementierung der Entität ***Album***:  
 
 ```csharp
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace QTMusicStoreLight.Logic.Entities
 {
     [Table("Albums", Schema = "App")]
@@ -261,7 +260,6 @@ Das Datenmodell ist wie nachfolgend dargestellt in ein Objektmodell transformier
 Nachdem die Entitäten definiert sind, wird nun der Datenbank-Kontext für die Anwendung fertiggesetllt. Aus der Vorlage ***QuickTemplate*** ist der vordefinierte Datenbank-Kontext ***'ProjectDbContext'*** kopiert worden. Diese beinhaltet bereits eine Standard-Implementierung für den generischen Kontroller ***'GenericController&lt;E&gt;'*** und ist als eine **'partielle Klasse'** ausgeführt. Damit diese Klasse angepasst werden kann, wird eine weitere **'partielle Klasse'** zur Klasse ***'ProjectDbContext'*** erstellt. Dazu wird eine Datei mit dem Namen ***'ProjectDbContextExt.cs'*** erstellt. Die Erweiterung ist nachfolgend definiert:
 
 ```csharp
-using Microsoft.EntityFrameworkCore;
 using QTMusicStoreLight.Logic.Entities;
 
 namespace QTMusicStoreLight.Logic.DataContext
@@ -296,7 +294,7 @@ namespace QTMusicStoreLight.Logic.DataContext
 
 Wie aus der obigen Implementierung ersichtlich ist, werden für die entsprechenden Entitäten die ***'DbSet&lt;E&gt;'*** definiert. Zusätzlich wird die partielle Methode ***'GetDbSet&lt;E&gt;(...)'*** definiert. Über diese Methode greift der ***'GenericController&lt;E&gt;'*** auf den konkreten ***'DbSet&lt;E&gt;'*** zu.
 
-### Erstellen der konkreten Kontroller  
+### Erstellen der Kontroller  
 
 Der generische Kontroller ***'GenericController&lt;E&gt;'*** implementiert bereits die ***'CRUD'*** Funktionen für eine Entität. Um diese Funktionen für jede Entität zur Verfügung zu stellen, muss für jede Entität ein eigener Kontroller angelegt werden. Die Kontroller werden im Projekt ***QTMusicStoreLight.Logic*** im Ordner ***Controllers*** definiert.  
 
@@ -355,5 +353,92 @@ namespace QTMusicStoreLight.Logic.Controllers
 ```
 
 > **ACHTUNG:**  Die konkreten Kontroller werden mit dem Schlüsselwort ***'sealed'*** spezifiziert. Die Erklärung folgt zu einem späteren Zeitpunkt.  
+
+### Erstellen der Datenbank
+
+Dieser Abschnitt erläutert die Erstellung der Datenbank.
+
+**Notwendige Voraussetzungen:**  
+* Die gesamte Projektmappe muss fehlerfrei Übersetzt werden können.
+Die Verbindungszeichenfolge kann im Projekt **QTMusicStoreLight.ConApp** in der Datei **appsettings.Development.json** angepasst werden.
+* Als Startprojekt muss das Projekt **QTMusicStoreLight.ConApp** eingestellt sein.
+* In der **Package Manager Console** muss das **Default projekt: QTMusicStoreLight.Logic** ausgewählt sein.
+
+**Wichtige Kommandos:**
+
+> PM> add-migration InitDb
+
+...diese Kommando erzeugt eine Migration mit dem Namen 'InitDb'.
+
+> PM> update-database
+
+...diese Kommando führt die Migration aus und erzeugt die Datenbank.
+
+### Importieren von Daten  
+
+Der Import wird im Projekt **QTMusicStoreLight.ConApp** in der Datei **Program.cs** implementiert. Zu diesem Zweck werden die Daten, im csv-Format, vom [GitHub](https://github.com/leoggehrer/Data-MusicStore) heruntergeladen und im Ordner **CsvData** abgelegt. In den Eigenschaften der csv-Dateien wird die Eigenschaft **Copy to Output Directory** auf **Copy if newer** eingestellt. Mit dieser Einstellung müssen keine Pfade angegeben werden weil die Dateien in das Ausführungsverzeichnis kopiert werden. Nachfolgend ist der Programm-Code für den Import angegeben:  
+
+```csharp
+namespace QTMusicStoreLight.ConApp
+{
+    partial class Program
+    {
+        static partial void AfterRun()
+        {
+            var csvGenres = File.ReadAllLines("CsvData/Genre.csv")
+                             .Skip(1)
+                             .Select(l => l.Split(";"))
+                             .Select(d => new { id = d[0], Entity = new Logic.Entities.Genre { Name = d[1] } });
+            var csvArtists = File.ReadAllLines("CsvData/Artist.csv")
+                             .Skip(1)
+                             .Select(l => l.Split(";"))
+                             .Select(d => new
+                             {
+                                 id = d[0],
+                                 Entity = new Logic.Entities.Artist
+                                 {
+                                     Name = d[1],
+                                 }
+                             });
+            var csvAlbums = File.ReadAllLines("CsvData/AlbumWithGenre.csv")
+                             .Skip(1)
+                             .Select(l => l.Split(";"))
+                             .Select(d => new
+                             {
+                                 id = d[0],
+                                 ArtistId = d[2],
+                                 GenreId = d[3],
+                                 Entity = new Logic.Entities.Album
+                                 {
+                                     Title = d[1],
+                                 }
+                             });
+                var artists = csvArtists.Select(e => e.Entity).ToArray();
+                var genres = csvGenres.Select(e => e.Entity).ToArray();
+                var albums = new List<Logic.Entities.Album>();
+
+                foreach (var item in csvAlbums)
+                {
+                    var genIdx = csvGenres.IndexOf(e => e.id == item.GenreId);
+                    var artIdx = csvArtists.IndexOf(e => e.id == item.ArtistId);
+
+                    item.Entity.Genre = genres[genIdx];
+                    item.Entity.Artist = artists[artIdx];
+                    albums.Add(item.Entity);
+                }
+
+            Task.Run(async () =>
+            {
+                using var albumsCtrl = new Logic.Controllers.AlbumsController();
+
+                await albumsCtrl.InsertAsync(albums);
+                await albumsCtrl.SaveChangesAsync();
+            }).Wait();
+        }
+    }
+}
+```
+
+In der Zeile ***await albumsCtrl.InsertAsync(albums);*** werden die Objekte in den Datenbank-Kontext übertragen. Mit der Anweisung ***await albumsCtrl.SaveChangesAsync();*** werden die Daten in die Datenbank eingetragen. Alle referenzierten Objekte (z.B.: Album -> Artist) werden ebenfalls vom Kontroller in die Datenbank übermittelt.  
 
 **Viel Spaß beim Testen!**
