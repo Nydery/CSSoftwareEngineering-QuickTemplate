@@ -4,6 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace QuickTemplate.WebApi.Controllers
 {
+    /// <summary>
+    /// A generic one for the standard CRUD operations.
+    /// </summary>
+    /// <typeparam name="E">The type of entity</typeparam>
+    /// <typeparam name="M">The type of model</typeparam>
     public abstract partial class GenericController<E, M> : ControllerBase, IDisposable
         where E : Logic.Entities.IdentityObject, new()
         where M : class, new()
@@ -20,7 +25,11 @@ namespace QuickTemplate.WebApi.Controllers
             }
             EntityController = controller;
         }
-
+        /// <summary>
+        /// Converts an entity to a model and copies all properties of the same name from the entity to the model.
+        /// </summary>
+        /// <param name="entity">The entity to be converted</param>
+        /// <returns>The model with the property values of the same name</returns>
         protected virtual M ToModel(E? entity)
         {
             var result = new M();
@@ -31,6 +40,11 @@ namespace QuickTemplate.WebApi.Controllers
             }
             return result;
         }
+        /// <summary>
+        /// Converts all entities to models and copies all properties of the same name from an entity to the model.
+        /// </summary>
+        /// <param name="entities">The entities to be converted</param>
+        /// <returns>The models</returns>
         protected virtual IEnumerable<M> ToModel(IEnumerable<E> entities)
         {
             var result = new List<M>();
