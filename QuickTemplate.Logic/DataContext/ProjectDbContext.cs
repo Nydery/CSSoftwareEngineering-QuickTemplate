@@ -1,6 +1,5 @@
 ﻿//@BaseCode
 //MdStart
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace QuickTemplate.Logic.DataContext

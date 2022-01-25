@@ -18,8 +18,8 @@ namespace TemplateComparison.ConApp
             // Project: QuickTemplate-Projects
             TargetPaths = new string[]
             {
-                //Path.Combine(UserPath, @"source\repos\HtlLeo\CSSoftwareEngineering\BikeTogether"),
                 Path.Combine(UserPath, @"source\repos\HtlLeo\CSSoftwareEngineering\QTMusicStoreLight"),
+                //Path.Combine(UserPath, @"source\repos\HtlLeo\CSSoftwareEngineering\QTTodoList"),
             };
             // End: QuickTemplate-Projects
             ClassConstructed();
