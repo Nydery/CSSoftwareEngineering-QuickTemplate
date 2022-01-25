@@ -26,7 +26,27 @@ namespace QuickTemplate.Logic.Controllers
 
         }
 
-        internal DbSet<E> EntitySet => dbSet ??= Context.GetDbSet<E>();
+        internal DbSet<E> EntitySet
+        {
+            get
+            {
+                if (dbSet == null)
+                {
+                    if (Context != null)
+                    {
+                        dbSet = Context.GetDbSet<E>();
+                    }
+                    else
+                    {
+                        using var ctx = new DataContext.ProjectDbContext();
+
+                        dbSet = ctx.GetDbSet<E>();
+
+                    }
+                }
+                return dbSet;
+            }
+        }
 
         #region Queries
         public virtual ValueTask<E?> GetByIdAsync(int id)

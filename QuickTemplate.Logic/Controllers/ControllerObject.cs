@@ -15,7 +15,7 @@ namespace QuickTemplate.Logic.Controllers
         static partial void AfterClassInitialize();
 
         private readonly bool contextOwner;
-        internal ProjectDbContext Context { get; private set; }
+        internal ProjectDbContext? Context { get; private set; }
 
         internal ControllerObject(ProjectDbContext context)
         {
@@ -28,7 +28,10 @@ namespace QuickTemplate.Logic.Controllers
             {
                 throw new ArgumentNullException(nameof(other));
             }
-
+            if (other.Context == null)
+            {
+                throw new ArgumentNullException(nameof(other.Context));
+            }
             Context = other.Context;
             contextOwner = false;
         }
@@ -45,10 +48,10 @@ namespace QuickTemplate.Logic.Controllers
                     // TODO: dispose managed state (managed objects)
                     if (contextOwner)
                     {
-                        Context.Dispose();
+                        Context?.Dispose();
                     }
+                    Context = null;
                 }
-
                 // TODO: free unmanaged resources (unmanaged objects) and override finalizer
                 // TODO: set large fields to null
                 disposedValue = true;
