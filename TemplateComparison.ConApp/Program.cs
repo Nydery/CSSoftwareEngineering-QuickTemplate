@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
 
 namespace TemplateComparison.ConApp
 {
@@ -16,11 +17,11 @@ namespace TemplateComparison.ConApp
             SourcePath = GetCurrentSolutionPath();
 
             // Project: QuickTemplate-Projects
-            TargetPaths = new string[]
-            {
-                Path.Combine(UserPath, @"source\repos\HtlLeo\CSSoftwareEngineering\QTMusicStoreLight"),
-                //Path.Combine(UserPath, @"source\repos\HtlLeo\CSSoftwareEngineering\QTTodoList"),
-            };
+            var directory = new DirectoryInfo(SourcePath);
+            var qtDirectories = Directory.GetDirectories(directory != null && directory.Parent != null ? directory.Parent.FullName : SourcePath)
+                                         .Where(d => d.Contains("\\QT"))
+                                         .ToList();
+            TargetPaths = qtDirectories.ToArray();
             // End: QuickTemplate-Projects
             ClassConstructed();
         }
