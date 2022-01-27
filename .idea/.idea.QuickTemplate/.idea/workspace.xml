@@ -11,7 +11,11 @@
     <projectFile profileName="IIS Express">QuickTemplate.AspMvc/QuickTemplate.AspMvc.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c77232aa-5487-4862-a15d-0d4ff40075c0" name="Changes" comment="" />
+    <list default="true" id="c77232aa-5487-4862-a15d-0d4ff40075c0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.QuickTemplate/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QuickTemplate/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuickTemplate.AspMvc/Views/Home/Contact.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/QuickTemplate.AspMvc/Views/Home/Contact.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuickTemplate.AspMvc/Views/Home/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/QuickTemplate.AspMvc/Views/Home/Index.cshtml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +34,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="SolutionBuilderGeneralOptionsPageId" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.QuickTemplate.AspMvc">
@@ -176,6 +181,7 @@
       <updated>1642411550014</updated>
       <workItem from="1642411550018" duration="243000" />
       <workItem from="1642691014950" duration="403000" />
+      <workItem from="1643235393421" duration="542000" />
     </task>
     <servers />
   </component>
@@ -187,5 +193,9 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
