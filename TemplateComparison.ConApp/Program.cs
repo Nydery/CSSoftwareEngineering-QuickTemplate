@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Text;
+﻿using System.Text;
 
 namespace TemplateComparison.ConApp
 {
@@ -17,9 +16,10 @@ namespace TemplateComparison.ConApp
             SourcePath = GetCurrentSolutionPath();
 
             // Project: QuickTemplate-Projects
-            var directory = new DirectoryInfo(SourcePath);
-            var qtDirectories = Directory.GetDirectories(directory != null && directory.Parent != null ? directory.Parent.FullName : SourcePath)
-                                         .Where(d => d.Contains("\\QT"))
+            var directoryInfo = new DirectoryInfo(SourcePath);
+            var parentDirectory = directoryInfo.Parent != null ? directoryInfo.Parent.FullName : SourcePath;
+            var qtDirectories = Directory.GetDirectories(parentDirectory, "QT*", SearchOption.AllDirectories)
+                                         .Where(d => d.Contains('.') == false)
                                          .ToList();
             TargetPaths = qtDirectories.ToArray();
             // End: QuickTemplate-Projects
