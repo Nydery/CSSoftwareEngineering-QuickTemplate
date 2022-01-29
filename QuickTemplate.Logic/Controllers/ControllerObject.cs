@@ -30,7 +30,7 @@ namespace QuickTemplate.Logic.Controllers
             }
             if (other.Context == null)
             {
-                throw new ArgumentNullException(nameof(other.Context));
+                throw new Exception("The context from the other controller must not be null.");
             }
             Context = other.Context;
             contextOwner = false;

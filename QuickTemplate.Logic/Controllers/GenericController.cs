@@ -106,9 +106,15 @@ namespace QuickTemplate.Logic.Controllers
         #endregion Delete
 
         #region SaveChanges
-        public Task<int> SaveChangesAsync()
+        public async Task<int> SaveChangesAsync()
         {
-            return Context.SaveChangesAsync();
+            var result = 0;
+
+            if (Context != null)
+            {
+                result = await Context.SaveChangesAsync().ConfigureAwait(false);
+            }
+            return result;
         }
         #endregion SaveChanges
     }
