@@ -17,13 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonBase", "CommonBase\Co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7D1E32D0-6289-41AB-B44D-31F87C0C21A2}"
 	ProjectSection(SolutionItems) = preProject
-		AspMvc Dataflow.drawio = AspMvc Dataflow.drawio
-		CreateProject.drawio = CreateProject.drawio
-		CreateProject.png = CreateProject.png
-		CreateProjectOverview.png = CreateProjectOverview.png
 		ReadMe.md = ReadMe.md
-		TemplateComparsion.drawio = TemplateComparsion.drawio
-		TemplateComparsion.png = TemplateComparsion.png
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickTemplate.WpfApp", "QuickTemplate.WpfApp\QuickTemplate.WpfApp.csproj", "{11E41372-993D-48EA-85EB-290BD727A3E6}"
