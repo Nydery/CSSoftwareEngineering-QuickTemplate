@@ -37,7 +37,7 @@
     <property name="settings.editor.selected.configurable" value="SolutionBuilderGeneralOptionsPageId" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.QuickTemplate.AspMvc">
+  <component name="RunManager" selected=".NET Project.TemplateCopier.ConApp">
     <configuration name="QuickTemplate.ConApp" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -182,6 +182,7 @@
       <workItem from="1642411550018" duration="243000" />
       <workItem from="1642691014950" duration="403000" />
       <workItem from="1643235393421" duration="542000" />
+      <workItem from="1643805466401" duration="564000" />
     </task>
     <servers />
   </component>
