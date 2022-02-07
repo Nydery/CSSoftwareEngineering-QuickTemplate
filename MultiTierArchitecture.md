@@ -14,13 +14,13 @@ Das **Datensystem** sorgt dafür, dass die Fremdschlüsselbeziehung eingehalten wi
 
 ## Geschäftslogik  
 
-Im Bereich der Domänenschicht werden grundsätzliche alle **Logik-Regeln** umgesetzt, welche von der Datenschicht nicht umgesetzt werden können. Dazu gehört die Regel - in unserem Beispiel der Rechnung, dass Rechnungen nur mit **mindestens** einer **Rechnungsposition** im System vorhanden sein dürfen. Diese **Regel** ist schwierig bis unmöglich auf der Datenschicht abbildbar und sollte daher in der darüberliegenden Ebene umgesetzt werden. Dies setzt allerdings voraus, dass alle Aktionen über den **Business-Layer** erfolgen. 
+Im Bereich der Domänenschicht werden grundsätzliche alle **Logik-Regeln** umgesetzt, welche von der Datenschicht nicht umgesetzt werden können. Dazu gehört die Regel - in unserem Beispiel der Rechnung, dass nur Rechnungen mit **mindestens** einer **Rechnungsposition** im System vorhanden sein dürfen. Diese **Regel** ist schwierig bis unmöglich auf der Datenschicht abbildbar und sollte daher in der darüberliegenden Ebene umgesetzt werden. Dies setzt allerdings voraus, dass alle Aktionen über den **Business-Layer** erfolgen. Aus diesem Grund muss die Architektur so konzipiert sein, dass der Zugriff auf die beiden Kontroller **Rechnungskopf** und **Rechnungsposition** außerhalb des Projektes ***Invoice.Logic*** geschützt sein muss.
 
 ## Presentationsschicht  
 
+In der Presentationsschicht befinden sich in den meisten Fällen viele unterschiedliche Anwendungen welche, auf den Backend zugreifen. Diese können vom physikalischen Aufbau sehr unterschiedlich sein. So gibt es Klienten welche ebenfalls in CSharp implementiert worden sind. Dadurch ergibt sich die Möglichkeit, dass diese Anwendungen direkt auf den Backend zugreifen können. Es gibt aber auch Endgeräte die nicht in CShrap implememntiert worden sind oder keine Möglichkeit des direkten Zugriffs auf das Backend haben (z.B.: Handy). Für den indirekten Zugriff auf das Backend gibt es einen REST Service. Dieser erlaubt einen Zugriff über das HTTP-Protokoll. Mit diesem Service ergibt sich ein uneingeschränkte Zugriff auf den Backend.
 
-
-
+In der nachfolgenden Abbildung ist die Architektur schematisch dargestellt: 
 
 
 ![MultiTierAchitecture](MultiTierArchitecture.png)
